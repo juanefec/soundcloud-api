@@ -16,7 +16,7 @@ func main() {
 
 	fmt.Println(sc.ClientID())
 
-	query, err := sc.GetLikes(soundcloudapi.GetLikesOptions{
+	query, err := sc.GetLikes(soundcloudapi.GetTracklistOptions{
 		ProfileURL: "https://soundcloud.com/dlfsldkjf",
 		Limit:      100,
 		Offset:     0,

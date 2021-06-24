@@ -9,7 +9,7 @@ import (
 
 func TestGetLikes(t *testing.T) {
 	limit := 10
-	options := soundcloudapi.GetLikesOptions{
+	options := soundcloudapi.GetTracklistOptions{
 		ProfileURL: "https://soundcloud.com/jaiseanforever",
 		Limit:      limit,
 		Type:       "track",
@@ -56,7 +56,7 @@ func TestGetLikes(t *testing.T) {
 
 }
 
-func getLikes(options soundcloudapi.GetLikesOptions) ([]soundcloudapi.Like, error) {
+func getLikes(options soundcloudapi.GetTracklistOptions) ([]soundcloudapi.Like, error) {
 	response, err := api.GetLikes(options)
 
 	if err != nil {
