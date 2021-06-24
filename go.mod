@@ -1,4 +1,4 @@
-module github.com/zackradisic/soundcloud-api
+module github.com/juanefec/soundcloud-api
 
 go 1.15
 
