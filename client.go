@@ -579,7 +579,7 @@ type GetTracklistOptions struct {
 	ProfileURL string // URL to the user's profile (will use this or ID to choose user)
 	ID         int64  //  User's ID if you have it
 	Limit      int    // How many tracks to return (defaults to 10)
-	Offset     int    // How many tracks to offset by (used for pagination; defaults to 0)
+	Offset     string // How many tracks to offset by (used for pagination; defaults to 0)
 	Type       string // What type of resource to return. One of ["track", "playlist", "all"]. Defaults to "all"
 }
 
@@ -603,8 +603,8 @@ func (c *client) getTracklist(options GetTracklistOptions) (*PaginatedQuery, err
 		options.Limit = 10
 	}
 
-	if options.Offset == 0 {
-		options.Offset = 0
+	if options.Offset == "" {
+		options.Offset = "0"
 	}
 
 	if options.Type == "" {
@@ -624,7 +624,7 @@ func (c *client) getTracklist(options GetTracklistOptions) (*PaginatedQuery, err
 		options.Type = "likes"
 	}
 
-	u, err = c.buildURL(usersURL+strconv.FormatInt(options.ID, 10)+"/"+options.Type, true, "limit", strconv.Itoa(options.Limit), "offset", strconv.Itoa(options.Offset))
+	u, err = c.buildURL(usersURL+strconv.FormatInt(options.ID, 10)+"/"+options.Type, true, "limit", strconv.Itoa(options.Limit), "offset", options.Offset)
 	if err != nil {
 		return nil, errors.Wrap(err, "Failed to build URL for getTracklist()")
 	}
